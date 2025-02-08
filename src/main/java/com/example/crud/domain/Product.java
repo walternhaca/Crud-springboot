@@ -18,5 +18,11 @@ public class Product {
 
     private String name;
 
-    private Number price_in_cents;
+    private Integer price_in_cents;
+
+    //Este construtor foi imperioso colocar porque o AllArgsConstrutor nao tem como mapear o dto que criou-se
+    public Product (RequestProduct requestProduct){
+        this.name = requestProduct.name();
+        this.price_in_cents  = requestProduct.price_in_cents();
+    }
 }
