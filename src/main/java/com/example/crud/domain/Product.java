@@ -20,9 +20,12 @@ public class Product {
 
     private Integer price_in_cents;
 
+    private Boolean active;
+
     //Este construtor foi imperioso colocar porque o AllArgsConstrutor nao tem como mapear o dto que criou-se
     public Product (RequestProduct requestProduct){
         this.name = requestProduct.name();
         this.price_in_cents  = requestProduct.price_in_cents();
+        this.active = true;
     }
 }

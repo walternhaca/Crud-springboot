@@ -22,7 +22,7 @@ public class ProductController {
     @GetMapping
     //Response Entity eh uma classe padrao para montar respostas para o cliente
     public ResponseEntity getAllProducts(){
-        var allProducts = repository.findAll();
+        var allProducts = repository.findAllByActiveTrue();
         return ResponseEntity.ok( allProducts);
     }
 
@@ -48,5 +48,19 @@ public class ProductController {
             return  ResponseEntity.notFound().build();
         }
 
+    }
+
+    @DeleteMapping("/{id}")
+    @Transactional
+    public ResponseEntity deleteProduct(@PathVariable String id){
+        Optional<Product> optionalProduct = repository.findById(id);
+        if(optionalProduct.isPresent()) {
+            Product product = optionalProduct.get();
+            product.setActive(false);
+
+            return ResponseEntity.ok(product);
+        } else{
+            return  ResponseEntity.notFound().build();
+        }
     }
 }
