@@ -4,6 +4,7 @@ package com.example.crud.controllers;
 import com.example.crud.domain.Product;
 import com.example.crud.domain.ProductRepository;
 import com.example.crud.domain.RequestProduct;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,7 +61,7 @@ public class ProductController {
 
             return ResponseEntity.ok(product);
         } else{
-            return  ResponseEntity.notFound().build();
+            throw new EntityNotFoundException();
         }
     }
 }
